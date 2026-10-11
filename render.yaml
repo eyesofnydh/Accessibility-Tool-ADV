@@ -1,10 +1,10 @@
-# Render Blueprint for the RBI accessibility tester.
+# Render Blueprint for the  accessibility tester.
 # This file must sit at the root of the Git repository, next to package.json and Dockerfile.
 # Reference: https://render.com/docs/blueprint-spec
 
 services:
   - type: web
-    name: rbi-accessibility-tester
+    name: -accessibility-tester
     runtime: docker            # built from the Dockerfile, which already contains Chromium
     plan: free                 # Free: 0.1 CPU, 512 MB RAM, sleeps after 15 minutes without visitors.
                                # If tests crash or the service restarts mid-run, it has run out of memory:
@@ -27,11 +27,11 @@ services:
 
       # Only these sites may be tested from the hosted copy (sub-domains included).
       - key: A11Y_ALLOWED_TARGETS
-        value: stg-rbi.webc.in,rbi.org.in
+        value: stg-.webc.in,.org.in
 
       # Default page shown in the "Page address" box.
       - key: TARGET_URL
-        value: https://stg-rbi.webc.in/
+        value: https://stg-.webc.in/
 
       # Login of the staging site (HTTP Basic Auth). Render asks for these when the Blueprint is first created.
       - key: A11Y_HTTP_USERNAME
