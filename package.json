@@ -1,7 +1,7 @@
 {
-  "name": "rbi-accessibility-tester",
+  "name": "-accessibility-tester",
   "version": "2.0.0",
-  "description": "Automated and assisted WCAG 2.2 AA testing for the RBI website and similar large sites.",
+  "description": "Automated and assisted WCAG 2.2 AA testing for the  website and similar large sites.",
   "private": true,
   "type": "module",
   "engines": {
