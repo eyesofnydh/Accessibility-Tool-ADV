@@ -1,6 +1,6 @@
-# RBI accessibility tester
+#   Accessibility tester
 
-Automated and assisted accessibility testing for the RBI website and similar large sites, against **WCAG 2.2 Level AA**.
+Automated and assisted accessibility testing for the   website and similar large sites, against **WCAG 2.2 Level AA**.
 
 Every result is one of three values:
 
@@ -42,10 +42,10 @@ Your browser opens a start page. Enter the page address, choose "This page only"
 
 ```bash
 # One page
-npm run test:a11y -- --url=https://stg-rbi.webc.in/regulated-entities
+npm run test:a11y -- --url=https://stg- .webc.in/regulated-entities
 
 # The whole site (follows same-site links)
-npm run crawl:a11y -- --url=https://stg-rbi.webc.in/ --max-pages=50
+npm run crawl:a11y -- --url=https://stg- .webc.in/ --max-pages=50
 
 # Open the dashboard
 npm run report
@@ -84,13 +84,13 @@ What changes when it is hosted:
 |---|---|---|
 | Who can open it | Only you | Anyone with the address **and** the password |
 | Sign-in | None | User and password on every visit (`A11Y_APP_USER`, `A11Y_APP_PASSWORD`). The app refuses to start without a password. |
-| Sites it may test | Any | Only those in `A11Y_ALLOWED_TARGETS` (set to `stg-rbi.webc.in,rbi.org.in`) |
+| Sites it may test | Any | Only those in `A11Y_ALLOWED_TARGETS` (set to `stg- .webc.in, .org.in`) |
 | Reports | Stay in `reports/` | Lost when the service restarts or redeploys, unless you enable the `disk` block in `render.yaml` |
 | Runs at once | One | One (a second person sees "A test is already running") |
 
 Things to check before relying on it:
 
-- **Can Render reach the staging site?** If `stg-rbi.webc.in` only answers to your office network or VPN, a hosted copy cannot load it. Ask whoever runs staging to allow Render's outbound addresses (listed on the service's **Connect** menu), or keep running the tester on your own computer.
+- **Can Render reach the staging site?** If `stg- .webc.in` only answers to your office network or VPN, a hosted copy cannot load it. Ask whoever runs staging to allow Render's outbound addresses (listed on the service's **Connect** menu), or keep running the tester on your own computer.
 - **Memory.** `render.yaml` uses the free plan (0.1 CPU, 512 MB RAM). Chromium may run out of memory there, which shows as a test that stops or a service that restarts mid-run. Untick the heavy tests (Zoom, Small viewports, Windows High Contrast) or change `plan` to `1c-2g` (2 GB, paid). A free service also sleeps after 15 minutes without visitors and takes about a minute to wake.
 - **The Dockerfile's Playwright version must match `package.json`.** Both are 1.56.0. Change them together.
 - If you add a custom domain, add it to `A11Y_ALLOWED_HOSTS` (comma-separated). The `onrender.com` address is allowed automatically.
@@ -148,7 +148,7 @@ Each issue has an ID, a bug sentence you can paste into the bug sheet, steps to 
 
 ### External links
 
-Every link is classed as internal or external (set `site.internalHosts` in the config for other RBI domains that count as internal). For external and new-tab links the tool checks whether the accessible name or description says so. `links.csv` and the dashboard's Links tab list them all. What JAWS actually says is on the manual checklist.
+Every link is classed as internal or external (set `site.internalHosts` in the config for other   domains that count as internal). For external and new-tab links the tool checks whether the accessible name or description says so. `links.csv` and the dashboard's Links tab list them all. What JAWS actually says is on the manual checklist.
 
 ### Contrast and WebAIM
 
@@ -165,7 +165,7 @@ A problem in the header or footer shows up on every page. The Issues tab therefo
 Every visible border is measured the same way as text: the border colour is the foreground, and the colour next to it is the background. The background is whichever side gives the better ratio, the colour outside the element or the element's own fill. The required ratio is 3:1, the "Graphical Objects and User Interface Components" line in WebAIM. Borders appear in the Color contrast tab and in `contrast-report.csv` as "Border" (cards, panels, tables, dividers) or "Border (control)" (buttons, links, tabs). Identical borders are listed once with a count.
 
 - A form field whose border and fill are both below 3:1 is a WCAG failure (1.4.11).
-- A button or link whose border is below 3:1 is reported as an RBI project-rule failure. WCAG requires 3:1 there only when the border is the only thing that identifies the control.
+- A button or link whose border is below 3:1 is reported as an   project-rule failure. WCAG requires 3:1 there only when the border is the only thing that identifies the control.
 - A card, table or divider border below 3:1 shows `false` in the contrast table and is listed as MANUAL_REVIEW in the issues: it is a failure only if the border carries meaning.
 
 Set `contrast: { borders: false }` in the config to switch border rows off.
@@ -173,10 +173,10 @@ Set `contrast: { borders: false }` in the config to switch border rows off.
 ## Three kinds of result level
 
 - **A / AA**: a WCAG 2.2 criterion. These decide the "Overall WCAG AA" verdict.
-- **Project**: an RBI audit expectation that WCAG does not strictly require, such as table captions, skipped heading levels, `aria-current` in breadcrumbs, underline on focused links, and announcing external links. Reported, counted separately, and not part of the WCAG verdict.
+- **Project**: an   audit expectation that WCAG does not strictly require, such as table captions, skipped heading levels, `aria-current` in breadcrumbs, underline on focused links, and announcing external links. Reported, counted separately, and not part of the WCAG verdict.
 - **Best practice**: good practice only (for example a missing `<main>` landmark).
 
-To make project rules fail the overall verdict too, set `rbi.projectRulesAffectVerdict: true` in the config.
+To make project rules fail the overall verdict too, set ` .projectRulesAffectVerdict: true` in the config.
 
 ## What this tool cannot do
 
@@ -199,9 +199,9 @@ desktopViewport: { width: 1920, height: 945 },   // your screen at 100%
 viewports: [{ width: 360, height: 256 }, { width: 320, height: 256 }],
 zoomLevels: [1, 2],
 optionalReflow400: true,
-site: { internalHosts: ['rbi.org.in'] },
+site: { internalHosts: [' .org.in'] },
 search: { enabled: true, query: 'bank' },         // set input: '<css selector>' if it picks the wrong field
-modals: { triggers: [{ name: 'Leaving RBI popup', open: '<css selector of the control>' }] },
+modals: { triggers: [{ name: 'Leaving   popup', open: '<css selector of the control>' }] },
 crawl: { maxPages: 50, maxDepth: 3, include: [], exclude: ['logout'] },
 limits: { maxTabStops: 150, maxScreenshotsPerPage: 60, maxFindingsPerRule: 40, maxOpenStates: 12, maxOpenDepth: 2 },
 contrast: { borders: true, states: true },       // states = hover and focus colours
@@ -233,7 +233,7 @@ tests/              unit tests and an end-to-end test against local sample pages
 
 ### Adding a rule
 
-1. Add an entry to `src/wcag/rules.ts` (id, WCAG criterion, category, severity, issue title, expected result, fix, why it is raised, and optionally a bug-sentence template, the RBI regression sentence and a manual-check instruction).
+1. Add an entry to `src/wcag/rules.ts` (id, WCAG criterion, category, severity, issue title, expected result, fix, why it is raised, and optionally a bug-sentence template, the   regression sentence and a manual-check instruction).
 2. In the matching file in `src/browser/`, call `fail('your.rule', element, 'what was found')`, `review(...)` for a manual check, or `pass('your.rule')`.
 3. Add a planted example to `tests/fixtures/bad.html` and the rule id to `tests/integration.test.ts`.
 
