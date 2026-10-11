@@ -65,7 +65,7 @@ export default defineConfig({
   modals: {
     autoDetect: true,
     triggers: [
-      // { name: 'Leaving RBI popup', open: 'footer a[target="_blank"]' },
+      // { name: 'Leaving   popup', open: 'footer a[target="_blank"]' },
     ],
   },
 
@@ -73,9 +73,9 @@ export default defineConfig({
   manual: { screenReader: 'JAWS + Chrome' },
 
   // Hosts that count as internal (the page's own host always does).
-  site: { internalHosts: ['rbi.org.in'] },
+  site: { internalHosts: [' .org.in'] },
 
-  rbi: {
+   : {
     linkFocusUnderlineAndColor: true,
     projectRulesAffectVerdict: false,
   },
